@@ -7,6 +7,19 @@ import { requireAdmin } from "../middleware/role.middleware.js";
 
 const router = Router();
 
+/**
+ * @openapi
+ * /api/admin/dashboard:
+ *   get:
+ *     tags: [Admin]
+ *     summary: Access the administrator dashboard
+ *     security:
+ *       - bearerAuth: []
+ *     responses:
+ *       '200': { description: Admin dashboard access granted }
+ *       '401': { description: Missing, invalid, or expired token, or user no longer exists }
+ *       '403': { description: Admin access required }
+ */
 router.get(
   "/dashboard",
   authenticate,

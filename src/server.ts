@@ -5,6 +5,8 @@ import dotenv from "dotenv";
 import prisma from "./db/prisma.js";
 import userRoutes from "./routes/user.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
+import swaggerUi from "swagger-ui-express";
+import swaggerDocument from "./config/swagger.js";
 dotenv.config();
 
 const app = express();
@@ -12,6 +14,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(express.json());
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 
 app.use("/api/auth", authRoutes);
